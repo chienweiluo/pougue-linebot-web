@@ -14,8 +14,12 @@ app.post('/webhook', (req, res) => {
   console.log(events, 'events');
   events.forEach(async (event) => {
     const { type, data } = event;
+    console.log(type, 'type');
+    console.log(data, 'data');
     if (type === 'postback') {
+    
       const jsonQuery = querystring.parse(data) || {};
+      console.log(jsonQuery, 'jsonQuery');
       if (jsonQuery.action === 'checked') {
         const rowNumber = jsonQuery.rowNumber;
         try {
