@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My LIFF App</title>
+  <!-- 引入 LIFF SDK -->
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h1>Sheet.html</h1>
+  <div id="profile">
+    <p>用戶ID: <span id="userId"></span></p>
+    <p>顯示名稱: <span id="displayName"></span></p>
+  </div>
+  <button onclick="closeLiff()">關閉 LIFF</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 初始化 LIFF 應用
+      liff.init({ liffId: 'YOUR_LIFF_ID' })
+        .then(() => {
+          if (!liff.isLoggedIn()) {
+            liff.login(); // 如果用戶未登入，則進行登入
+          } else {
+            getUserProfile(); // 如果已登入，獲取用戶資料
+          }
+        })
+        .catch(err => {
+          console.error('LIFF 初始化失敗:', err);
+        });
+
+      // 獲取用戶資料
+      function getUserProfile() {
+        liff.getProfile()
+          .then(profile => {
+            document.getElementById('userId').textContent = profile.userId;
+            document.getElementById('displayName').textContent = profile.displayName;
+          })
+          .catch(err => {
+            console.error('無法獲取用戶資料:', err);
+          });
+      }
+    });
+
+    // 關閉 LIFF 應用
+    function closeLiff() {
+      liff.closeWindow();
+    }
+  </script>
+</body>
+</html>
