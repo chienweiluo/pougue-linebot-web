@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 // 解析 JSON 請求
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, 'sheet.html')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Line Bot Webhook Endpoint
 app.post('/webhook', (req, res) => {
