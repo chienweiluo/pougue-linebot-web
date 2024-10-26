@@ -38,6 +38,61 @@ app.post('/webhook', (req, res) => {
         }
       }
     }
+
+    if (type === 'message') {
+      const {source} = event
+      const { type: messageType, text: textBody } = event.message
+      if (messageType === 'text') {
+        // send back message
+        if (textBody === 'chubby開團') {
+          // TODO: security
+          const lineApiUrl = 'https://api.line.me/v2/bot/message/push';
+          const token = 'VlcIaZn7yRomy925oqzJ20g+Eo0F5r0jasCpd4jb9BBMXikm1zoQWZI97LjaBQTI74WoZXuca7JMfQrVIGJpZ9DHMGuqyrnrlJmsHkfTZ6wojAfNt+M4tCcjb8CnF66ov5OP9S/iIPeuciRN5VsvZgdB04t89/1O/w1cDnyilFU=';
+          const message = {
+            to: source,
+            "messages": [
+              {
+                "type": "template",
+                "altText": "This is a buttons template",
+                "template": {
+                  "type": "buttons",
+                  "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSftQhDbYCsWZPpNbJqLRGoPneDneEfLNdrLw&s",
+                  "imageAspectRatio": "rectangle",
+                  "imageSize": "cover",
+                  "imageBackgroundColor": "#FFFFFF",
+                  "title": "Chubbby",
+                  "text": "請你打開",
+                  "defaultAction": {
+                    "type": "uri",
+                    "label": "這個按鈕",
+                    "uri": "https://liff.line.me/2006500949-YMqZ2gbp"
+                  },
+                  "actions": [
+                    {
+                      "type": "uri",
+                      "label": "this",
+                      "uri": "https://liff.line.me/2006500949-YMqZ2gbp"
+                    }
+                  ]
+                }
+              }
+            ]
+          };
+
+          const options = {
+            url: lineApiUrl,
+            "method": "post",
+            "contentType": "application/json",
+            "headers": {
+              "Authorization": "Bearer " + token
+            },
+            "payload": JSON.stringify(message)
+          };
+        
+          axios.request(options);
+        }
+      }
+    }
   });
 
   res.sendStatus(200);
