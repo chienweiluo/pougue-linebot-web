@@ -52,7 +52,7 @@ app.post('/webhook', (req, res) => {
             return
           }
           const lineApiUrl = 'https://api.line.me/v2/bot/message/push';
-          const token = 'VlcIaZn7yRomy925oqzJ20g+Eo0F5r0jasCpd4jb9BBMXikm1zoQWZI97LjaBQTI74WoZXuca7JMfQrVIGJpZ9DHMGuqyrnrlJmsHkfTZ6wojAfNt+M4tCcjb8CnF66ov5OP9S/iIPeuciRN5VsvZgdB04t89/1O/w1cDnyilFU=';
+          const token = process.env.LINE_TOKEN;
           const message = {
             to: userId,
             "messages": [
