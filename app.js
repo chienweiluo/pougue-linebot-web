@@ -40,20 +40,25 @@ app.post('/webhook', (req, res) => {
     }
 
     if (type === 'message') {
-      const {source} = event
+      const { source } = event
       const { type: messageType, text: textBody } = event.message
+      
       if (messageType === 'text') {
         // send back message
         if (textBody === 'chubby開團') {
           // TODO: security
+          const userId = source.userId
+          if (!userId) {
+            return
+          }
           const lineApiUrl = 'https://api.line.me/v2/bot/message/push';
           const token = 'VlcIaZn7yRomy925oqzJ20g+Eo0F5r0jasCpd4jb9BBMXikm1zoQWZI97LjaBQTI74WoZXuca7JMfQrVIGJpZ9DHMGuqyrnrlJmsHkfTZ6wojAfNt+M4tCcjb8CnF66ov5OP9S/iIPeuciRN5VsvZgdB04t89/1O/w1cDnyilFU=';
           const message = {
-            to: source,
+            to: userId,
             "messages": [
               {
                 "type": "template",
-                "altText": "This is a buttons template",
+                "altText": "Chubby Kai Tuan",
                 "template": {
                   "type": "buttons",
                   "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSftQhDbYCsWZPpNbJqLRGoPneDneEfLNdrLw&s",
