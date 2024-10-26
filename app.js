@@ -82,11 +82,11 @@ app.post('/webhook', (req, res) => {
           const options = {
             url: lineApiUrl,
             "method": "post",
-            "contentType": "application/json",
             "headers": {
-              "Authorization": "Bearer " + token
+              "Authorization": "Bearer " + token,
+              "Content-Type": "application/json"
             },
-            "payload": JSON.stringify(message)
+            "data": message
           };
         
           axios.request(options);
