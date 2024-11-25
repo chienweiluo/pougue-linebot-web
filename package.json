@@ -7,6 +7,7 @@
   "author": "Render Developers",
   "license": "MIT",
   "private": false,
+  "type": "module",
   "scripts": {
     "start": "node app.js"
   },
