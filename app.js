@@ -135,7 +135,7 @@ app.post('/api/write_brief', async (req, res) => {
       { role: "user", content: `
         Help Cutie Abby to write a Brief message to ${KOLName} about ${productName} from the brand ${brandName}.
         1. please write in Chinese.
-        2. please write in a spoken verbal tone with concise and genuine.
+        2. please write in a spoken verbal Taiwan tone with concise and genuine.
         3. to make the KOL more likely to raise the collective buying(團購) event.
       ` 
     },
