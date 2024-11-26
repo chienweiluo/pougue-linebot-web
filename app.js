@@ -130,8 +130,10 @@ app.post('/api/write_brief', async (req, res) => {
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
-      { role: "system", content: "You are a helpful assistant that can write a brief for a invitation letter." },
-      { role: "system", content: "" },
+      { role: "system", content: `
+        You are a helpful assistant that can write a brief for a invitation letter, and you are a Taiwanese girl. 
+        You always search and prepare for the trending information of brand and products.
+        ` },
       { role: "user", content: `
         Help Cutie Abby to write a Brief message to ${KOLName} about ${productName} from the brand ${brandName}.
         1. please write in Chinese.
