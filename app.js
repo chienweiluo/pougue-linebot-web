@@ -49,7 +49,7 @@ app.post('/webhook', (req, res) => {
             KOLName,
             storeName
           });
-  
+          console.log(response, 'response checkSchedule');
           if (response.data.result === 'success') {
             console.log(`${KOLName}'s ${storeName} on ${startDate} updated successfully.`);
           } else {
