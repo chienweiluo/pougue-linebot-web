@@ -50,7 +50,7 @@ app.post('/webhook', (req, res) => {
             storeName
           });
           console.log(response, 'response checkSchedule');
-          if (response.data.result === 'success') {
+          if (response.data.result === 'success setCheckToScheduleRow') {
             console.log(`${KOLName}'s ${storeName} on ${startDate} updated successfully.`);
           } else {
             console.error(`Failed to update row: ${response.data.error}`);
